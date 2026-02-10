@@ -39,4 +39,11 @@ export class UrlController {
           error: "Something went wrong creating the url",
         });
   };
+
+  public getStats = async (req: Request, res: Response) => {
+    const stats = await this.urlService.getStats();
+    return stats
+      ? res.status(200).json(stats)
+      : res.status(500).json({ error: "Something went wrong getting stats" });
+  };
 }

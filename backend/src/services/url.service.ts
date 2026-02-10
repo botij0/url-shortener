@@ -41,4 +41,23 @@ export class UrlService {
       return undefined;
     }
   }
+
+  public async getStats() {
+    try {
+      const totalUrls = await prisma.url.count();
+      const totalClicks = await prisma.url.aggregate({
+        _sum: {
+          counter: true,
+        },
+      });
+
+      return {
+        urls: totalUrls,
+        clicks: totalClicks._sum.counter || 0,
+      };
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 }

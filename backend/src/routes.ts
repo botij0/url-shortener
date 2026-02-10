@@ -7,6 +7,7 @@ export class AppRoutes {
 
     const urlController = new UrlController();
 
+    router.get("/api/stats", urlController.getStats);
     router.get("/api/:shortUrl", urlController.getUrl);
     router.post("/api/url", urlController.createUrl);
     return router;
