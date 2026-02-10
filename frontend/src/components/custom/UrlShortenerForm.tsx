@@ -5,8 +5,6 @@ import { Input } from "@/components/ui/input";
 import ShortenedResult from "./ShortenedResult";
 import { createShortUrl } from "@/actions/create-short-url.action";
 
-// const BASE_URL =
-
 
 export const UrlShortenerForm = () => {
   const [loading, setLoading] = useState(false);

@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { Check, Copy, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import type { urlResponse } from "@/interfaces/urlResponse.interface";
 
-interface ShortenedResultProps {
-  shortUrl: string;
-  originalUrl: string;
-}
 
-const ShortenedResult = ({ shortUrl, originalUrl }: ShortenedResultProps) => {
+export const ShortenedResult = ({ shortUrl, originalUrl }: urlResponse) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -51,5 +48,3 @@ const ShortenedResult = ({ shortUrl, originalUrl }: ShortenedResultProps) => {
     </div>
   );
 };
-
-export default ShortenedResult;
