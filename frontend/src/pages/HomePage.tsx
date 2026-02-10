@@ -2,7 +2,6 @@ import { GeometricShapes } from "@/components/custom/GeometricShapes"
 import { StatsBar } from "@/components/custom/StatsBar"
 import ThemeToggle from "@/components/custom/ThemeToggle"
 import { UrlShortenerForm } from "@/components/custom/UrlShortenerForm"
-import { Scissors } from "lucide-react"
 
 
 export const HomePage = () => {
@@ -16,14 +15,6 @@ export const HomePage = () => {
       </div>
 
       <div className="relative z-10 text-center max-w-3xl mx-auto">
-        {/* Logo */}
-        <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-primary/20 bg-secondary/30">
-          <Scissors className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium text-muted-foreground tracking-wide">
-            sniplink
-          </span>
-        </div>
-
         {/* Heading */}
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-4">
           Shorten.{" "}
@@ -45,7 +36,7 @@ export const HomePage = () => {
       </div>
 
       {/* Bottom geometric line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-primary/20 to-transparent" />
     </div>
   )
 }

@@ -61,26 +61,44 @@
   --animate-float: float 6s ease-in-out infinite;
 
   @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
   @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
   }
   @keyframes pulse-glow {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 1;
+    }
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(3deg); }
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(3deg);
+    }
   }
 }
 
 :root {
   /* Base */
-  --background: oklch(0.96 0.02 150);
+  --background: oklch(97.142% 0.02156 149.968 / 0.841);
   --foreground: oklch(0.2 0.04 150);
 
   /* Card / Popover */
@@ -95,7 +113,7 @@
   --primary-foreground: oklch(0.96 0.02 150);
 
   /* Secondary */
-  --secondary: oklch(0.88 0.03 150);
+  --secondary: oklch(96.781% 0.03235 149.735);
   --secondary-foreground: oklch(0.25 0.04 150);
 
   /* Muted */
@@ -206,7 +224,7 @@
     background-image:
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-size: 100px 100px;
   }
 
   .glow-border {

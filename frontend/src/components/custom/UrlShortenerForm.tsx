@@ -1,51 +1,70 @@
-import { useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { Link2, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// import ShortenedResult from "./ShortenedResult";
+import ShortenedResult from "./ShortenedResult";
+import { createShortUrl } from "@/actions/create-short-url.action";
+
+// const BASE_URL =
+
 
 export const UrlShortenerForm = () => {
-  const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const [shortUrl, setShortUrl] = useState("");
+  const [originalUrl, setOriginalUrl] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-    console.log(e)
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== "Enter") return;
+    handleShortenUrl();
+  };
+
+  const handleShortenUrl = async () => {
+    const url = inputRef.current?.value;
+
+    if (!url) return;
+    setLoading(true)
+    // Todo verify that match an url pattern.
+
+    const urlResponse = await createShortUrl(url.trim());
+    if (urlResponse) {
+      setShortUrl(`${import.meta.env.VITE_API_URL}/${urlResponse.shortUrl}`);
+      setOriginalUrl(urlResponse.originalUrl);
+    }
+    setLoading(false)
   };
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <form onSubmit={handleSubmit} className="relative">
-        <div className="flex gap-3">
-          <div className="relative flex-1">
-            <Link2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Paste your long URL here..."
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              className="pl-12 h-14 bg-secondary/50 border-border/60 text-foreground placeholder:text-muted-foreground font-mono text-sm focus-visible:ring-primary/40 focus-visible:border-primary/40 rounded-lg"
-            />
-          </div>
-          <Button
-            type="submit"
-            disabled={loading || !url.trim()}
-            className="h-14 px-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-lg glow-border transition-all duration-300 disabled:opacity-40"
-          >
-            {loading ? (
-              <Loader2 className="w-5 h-5 animate-spin" />
-            ) : (
-              <>
-                Shorten
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </>
-            )}
-          </Button>
-        </div>
-      </form>
 
-      {/* {shortUrl && <ShortenedResult shortUrl={shortUrl} originalUrl={originalUrl} />} */}
+      <div className="flex gap-3">
+        <div className="relative flex-1">
+          <Link2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder="Paste your long URL here..."
+            ref={inputRef}
+            onKeyDown={handleKeyDown}
+            className="pl-12 h-14 bg-secondary border-primary/50 text-foreground placeholder:text-muted-foreground font-mono text-sm focus-visible:ring-primary/50 focus-visible:border-primary/80 rounded-lg"
+          />
+        </div>
+        <Button
+          onClick={handleShortenUrl}
+          className="h-14 px-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-lg glow-border transition-all duration-300"
+        >
+          {loading ? (
+            <Loader2 className="w-5 h-5 animate-spin" />
+          ) : (
+            <>
+              Shorten
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </>
+          )}
+        </Button>
+      </div>
+
+      {shortUrl && <ShortenedResult shortUrl={shortUrl} originalUrl={originalUrl} />}
     </div>
   );
 };
