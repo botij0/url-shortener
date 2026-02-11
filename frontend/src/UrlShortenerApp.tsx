@@ -1,9 +1,12 @@
 import { RouterProvider } from "react-router"
 import { appRouter } from "./app.router"
+import { ThemeProvider } from "./context/ThemeContext"
 
 
 export const UrlShortenerApp = () => {
   return (
-    <RouterProvider router={appRouter} />
+    <ThemeProvider>
+      <RouterProvider router={appRouter} />
+    </ThemeProvider>
   )
 }

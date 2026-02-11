@@ -49,7 +49,7 @@ export const UrlShortenerForm = () => {
         </div>
         <Button
           onClick={handleShortenUrl}
-          className="h-14 px-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold rounded-lg glow-border transition-all duration-300"
+          className="h-14 px-8 glow-border border dark:border-accent/30 transition-all duration-300 dark:text-secondary-foreground dark:bg-background"
         >
           {loading ? (
             <Loader2 className="w-5 h-5 animate-spin" />
