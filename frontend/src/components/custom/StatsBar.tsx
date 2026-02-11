@@ -11,19 +11,20 @@ export const StatsBar = () => {
 
   return (
     <div className="flex items-center justify-center gap-12 mt-16">
-      <div className="text-center">
+      {stats.urls > 0 && (<div className="text-center">
         <p className="text-2xl font-bold text-gradient">{stats.urls}</p>
         <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
           Links Shortened
         </p>
       </div>
+      )}
 
-      <div className="text-center">
+      {stats.clicks > 0 && (<div className="text-center">
         <p className="text-2xl font-bold text-gradient">{stats.clicks}</p>
         <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
           Clicks Tracked
         </p>
-      </div>
+      </div>)}
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useRef, useState, type KeyboardEvent } from "react";
 import { Link2, ArrowRight, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import ShortenedResult from "./ShortenedResult";
+import { ShortenedResult } from "./ShortenedResult";
 import { createShortUrl } from "@/actions/create-short-url.action";
 
 

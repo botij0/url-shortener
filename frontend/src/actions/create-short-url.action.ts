@@ -2,13 +2,13 @@ import { urlApi } from "@/api/url.api";
 import type { urlResponse } from "@/interfaces/urlResponse.interface";
 
 export const createShortUrl = async (longUrl: string): Promise<urlResponse | null> => {
-  // TODO: handle error response.
   try {
     const response = await urlApi.post("/url", { longUrl });
-    console.log(response);
+
+    if (response.status !== 201) return null;
+
     return response.data;
-  } catch (error) {
-    console.error(error);
+  } catch {
     return null;
   }
 };
