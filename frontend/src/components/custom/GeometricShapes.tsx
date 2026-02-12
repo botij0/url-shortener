@@ -22,7 +22,7 @@ export const GeometricShapes = () => {
         className="absolute -top-20 left-92 w-96 h-96 border border-primary/30 rounded-full"
       />
       <div
-        className="absolute bottom-1/3 left-1/4 w-3 h-3 rounded-full bg-accent/30 animate-pulse-glow"
+        className="absolute top-90 -right-32 w-96 h-96 border border-primary/30 rounded-full"
         style={{ animationDelay: "1.5s" }}
       />
       {/* Large circle outline */}
