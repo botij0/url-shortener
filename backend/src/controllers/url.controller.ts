@@ -2,9 +2,11 @@ import type { Request, Response } from "express";
 
 import { UrlService } from "../services/url.service";
 import { CreateUrlDto } from "../data/dtos/create-url.dto";
+import { buildLogger } from "../config/logger";
 
 export class UrlController {
   private urlService: UrlService;
+  private readonly logger = buildLogger("url.controller");
 
   constructor() {
     this.urlService = new UrlService();
@@ -13,21 +15,30 @@ export class UrlController {
   public getUrl = async (req: Request, res: Response) => {
     const shortUrl = req.params.shortUrl;
 
-    if (typeof shortUrl !== "string")
+    if (typeof shortUrl !== "string") {
+      this.logger.warn("Invalid short URL parameter", {
+        shortUrl,
+        expectedType: "string",
+      });
       return res.status(400).json({ error: "Wrong Short Url" });
+    }
 
     const url = await this.urlService.getLongUrl(shortUrl);
 
-    console.log(url?.long_url);
+    if (!url) {
+      this.logger.warn("Short URL not found", { shortUrl });
+      return res.status(404).json({ error: `Url ${shortUrl} not found` });
+    }
 
-    return url
-      ? res.status(302).redirect(url.long_url)
-      : res.status(404).json({ error: `Url ${shortUrl} not found` });
+    return res.status(302).redirect(url.long_url);
   };
 
   public createUrl = async (req: Request, res: Response) => {
     const [error, createUrlDto] = CreateUrlDto.create(req.body);
-    if (error) return res.status(400).json({ error });
+    if (error) {
+      this.logger.warn("Validation failed for create URL", { error, body: req.body });
+      return res.status(400).json({ error });
+    }
 
     const url = await this.urlService.createShortUrl(createUrlDto!.long_url);
     return url
