@@ -10,6 +10,7 @@ function main() {
   const server = new Server({
     port: envs.PORT,
     routes: AppRoutes.routes,
+    publicPath: envs.PUBLIC_PATH,
   });
 
   server.start();
