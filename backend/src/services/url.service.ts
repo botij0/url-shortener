@@ -1,4 +1,3 @@
-import type { PrismaClient } from "@prisma/client/extension";
 import { encodeBase62 } from "../config/encode";
 import { prisma } from "../data/postgres";
 import { buildLogger } from "../config/logger";
