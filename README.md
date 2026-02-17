@@ -72,7 +72,7 @@ docker compose up -d
 
 For this project, I used the package manager of `bun` avilable on: [Bun](https://bun.com/)
 
-1. Hava a PostgresSql database running or run the docker-compose.database.yml to run one container:
+1. Have a PostgresSql database running or run the docker-compose.database.yml to run one container:
 
 ```
 docker compose -f docker-compose.database.yml up -d
