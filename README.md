@@ -13,3 +13,40 @@ Url shortener fully functional with a modern, geometric design and tracking of s
 ![Axios](https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white)
 ![ExpressJs](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)
 ![PostgreSql](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+
+## Contents
+
+1. [Execution](#execution)
+    - [Environment Variables](#environment-variables)
+    - [Run App Docker Recommended](#run-app-docker-recommended)
+    - [Run App Locally](#run-app-locally)
+
+## Execution
+
+This section contains how to execute the application once you have cloned the repository.
+
+### Environment variables
+
+1. Copy the enviroment template of the `backend` folder:
+```
+cd backend && cp .env.template .env
+```
+> [!NOTE]
+> In the `template_secrets.env` file you can find the following variables:
+>
+> - `PORT=3334`
+> - `PUBLIC_PATH=public`
+> - `BASE_URL=your_domain`
+>
+> - `POSTGRES_URL=postgresql://postgres:123456@localhost:5432/URL`
+> - `POSTGRES_USER=postgres`
+> - `POSTGRES_DB=URL`
+> - `POSTGRES_PORT=5432`
+> - `POSTGRES_PASSWORD=123456`
+
+> [!IMPORTANT]
+> `POSTGRES` variables need to be modified with your local databse or external database if you wish.
+
+### Run App Docker Recommended
+
+### Run app locally
